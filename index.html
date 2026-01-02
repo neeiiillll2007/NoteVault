@@ -2,51 +2,174 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>NotesVault | Free Subject-wise Notes</title>
-  <link rel="stylesheet" href="style.css">
+  <title>NotesVault | College Notes</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f6fb;
+    }
+
+    header {
+      background: linear-gradient(135deg, #4f46e5, #7c3aed);
+      color: white;
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    section {
+      padding: 40px;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    .card a, button {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 10px 15px;
+      background: #4f46e5;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .locked {
+      background: #ddd;
+      color: #555;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: #666;
+    }
+  </style>
 </head>
 <body>
 
 <header>
   <h1>📘 NotesVault</h1>
-  <p>Subject-wise College Notes | Free PDF Downloads</p>
+  <p>Subject-wise College Notes (Free & Paid)</p>
 </header>
 
-<input type="text" id="search" placeholder="Search subject..." onkeyup="searchNotes()">
+<!-- FREE NOTES -->
+<section>
+  <h2>📂 Free Notes</h2>
+  <div class="grid" id="freeNotes">
+    <div class="card">
+      <h3>Digital Electronics</h3>
+      <p>Basics PDF</p>
+      <a href="#">Download</a>
+    </div>
 
-<section class="container">
+    <div class="card">
+      <h3>Discrete Mathematics</h3>
+      <p>Unit 1</p>
+      <a href="#">Download</a>
+    </div>
 
-  <div class="card">
-    <h2>Digital Electronics</h2>
-    <a href="notes/digital-electronics/de-notes.pdf" download>Download PDF</a>
+    <div class="card">
+      <h3>Programming Concepts</h3>
+      <p>Introduction</p>
+      <a href="#">Download</a>
+    </div>
+
+    <div class="card">
+      <h3>R Programming</h3>
+      <p>Basics</p>
+      <a href="#">Download</a>
+    </div>
+
+    <div class="card">
+      <h3>English</h3>
+      <p>Grammar Notes</p>
+      <a href="#">Download</a>
+    </div>
   </div>
+</section>
 
-  <div class="card">
-    <h2>Discrete Mathematics</h2>
-    <a href="notes/discrete-maths/dm-notes.pdf" download>Download PDF</a>
+<!-- PAID NOTES -->
+<section>
+  <h2>💰 Paid Notes</h2>
+  <div class="grid">
+    <div class="card locked">
+      <h3>Digital Electronics</h3>
+      <p>Complete Semester</p>
+      <button onclick="alert('Payment system coming soon')">🔒 Unlock ₹49</button>
+    </div>
+
+    <div class="card locked">
+      <h3>R Programming</h3>
+      <p>Full Practical Guide</p>
+      <button onclick="alert('Payment system coming soon')">🔒 Unlock ₹49</button>
+    </div>
   </div>
+</section>
 
-  <div class="card">
-    <h2>Programming Concepts</h2>
-    <a href="notes/programming-concepts/pc-notes.pdf" download>Download PDF</a>
-  </div>
+<!-- ADMIN PANEL -->
+<section>
+  <h2>🛠 Admin Upload (Demo)</h2>
 
-  <div class="card">
-    <h2>R Programming</h2>
-    <a href="notes/r-programming/r-notes.pdf" download>Download PDF</a>
-  </div>
+  <input type="text" id="subject" placeholder="Subject name">
+  <input type="text" id="title" placeholder="Notes title">
+  <button onclick="addNote()">Add Note</button>
 
-  <div class="card">
-    <h2>English</h2>
-    <a href="notes/english/english-notes.pdf" download>Download PDF</a>
-  </div>
-
+  <p style="color:#555;">(This works using browser storage – backend can be added later)</p>
 </section>
 
 <footer>
-  <p>© 2026 | NotesVault</p>
+  © 2026 NotesVault | Built by Neil 🚀
 </footer>
 
-<script src="script.js"></script>
+<script>
+  function addNote() {
+    const subject = document.getElementById("subject").value;
+    const title = document.getElementById("title").value;
+
+    if (!subject || !title) {
+      alert("Fill all fields");
+      return;
+    }
+
+    const card = document.createElement("div");
+    card.className = "card";
+    card.innerHTML = `
+      <h3>${subject}</h3>
+      <p>${title}</p>
+      <a href="#">Download</a>
+    `;
+
+    document.getElementById("freeNotes").appendChild(card);
+
+    document.getElementById("subject").value = "";
+    document.getElementById("title").value = "";
+  }
+</script>
+
 </body>
 </html>
+
