@@ -1,0 +1,10 @@
+notesvault
+├── index.html
+├── style.css
+├── script.js
+└── notes/
+    ├── digital-electronics/de-notes.pdf
+    ├── discrete-maths/dm-notes.pdf
+    ├── programming-concepts/pc-notes.pdf
+    ├── r-programming/r-notes.pdf
+    └── english/english-notes.pdf
